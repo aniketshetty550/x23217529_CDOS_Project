@@ -44,7 +44,6 @@
       color: black;
     }
     
-    /* Create a right-aligned (split) link inside the navigation bar */
     .topnav a.split {
       float: right;
       background-color: #04AA6D;
@@ -62,8 +61,9 @@
 <div class="topnav">
   <a class="active" href="#home">Login</a>
   <a href="#news">Signup</a>
-  <a href="{% url '' %">About</a>
+  <a href="{% url 'about' %}">About</a>
   <a href="#about" class="split">Place an Order</a>
+  <a href="#about" class="split">Menu</a>
 </div>
 
 <div class="container mb-5" style="padding-left:400px", >

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    .container{
+    margin-top:160px;
+    margin-left:100px;
+    font-family: Times, Helvetica, sans-serif;
+    color: Black;
+        
+    }
+    
+
+    body {
+      margin: 0;
+      font-family: Times, Helvetica, sans-serif;
+    }
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    /* Create a right-aligned (split) link inside the navigation bar */
+    .topnav a.split {
+      float: right;
+      background-color: #04AA6D;
+      color: white;
+    }
+    /*.row{*/
+    /*margin-top:250px;*/
+    /*font-family: Times, Helvetica, sans-serif;*/
+    /*color: Black;*/
+        
+    /*}*/
+    body {
+            background-color: lightgrey;
+                 
+             }
+    
+</style>
+
+<div class="topnav">
+  <a class="active" href="#home">Login</a>
+  <a href="#news">Signup</a>
+  <a href="#contact">About</a>
+  <a href="#about" class="split">Place an Order</a>
+</div>
+
+<div class="container mb-5" style="padding-left:400px", >
+  <h2><b>Food Delivery Application</b></h2>
+  <p>Count the Memories not the Carolries!</p>
+</div>
+
+
+<!--<div class="container mb-5">-->
+<!--    <div class="row justify-content-center mt-5">-->
+<!--    </div>-->
+<!--    <div class="row justify-content-center mt-1">-->
+<!--        <div class="card col-md-5 col-sm-12 offset-md-1 p-4 text-center">-->
+<!--            <h2>Place an Order!</h2>-->
+<!--            <button class="btn btn-outline-primary">Order Now!</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+{% endblock content %}

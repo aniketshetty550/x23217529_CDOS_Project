@@ -2,21 +2,28 @@
 
 {% block content %}
 
+{% load static %}
+
 <style>
 
     .container{
-    margin-top:160px;
-    margin-left:100px;
-    font-family: Times, Helvetica, sans-serif;
-    color: Black;
+    margin-top:250px;
+    margin-left:70px;
+    font-family: Fantasy, Helvetica, sans-serif;
+    color: White;
         
     }
     
-
     body {
-      margin: 0;
-      font-family: Times, Helvetica, sans-serif;
-    }
+            /*background-color: lightgrey;*/
+            background-image: url('{% static "homepage3.jpg"%}');
+            font-family: Times, Helvetica, sans-serif;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            color: white;     
+             }
+    
     
     .topnav {
       overflow: hidden;
@@ -49,22 +56,19 @@
     /*color: Black;*/
         
     /*}*/
-    body {
-            background-color: lightgrey;
-                 
-             }
     
 </style>
 
 <div class="topnav">
   <a class="active" href="#home">Login</a>
   <a href="#news">Signup</a>
-  <a href="#contact">About</a>
+  <a href="{% url '' %">About</a>
   <a href="#about" class="split">Place an Order</a>
 </div>
 
 <div class="container mb-5" style="padding-left:400px", >
-  <h2><b>Food Delivery Application</b></h2>
+  <h2 style="font-size: 52px;">
+  <b>Food Delivery Application</b></h2>
   <p>Count the Memories not the Carolries!</p>
 </div>
 

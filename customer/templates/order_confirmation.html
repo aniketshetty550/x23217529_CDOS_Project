@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    body {
+            background-color: lightgrey;
+                
+        }
+    
+    .container{
+    margin-top:50px;
+    margin-left:120px;
+    font-family: Times, Helvetica, sans-serif;
+    color: Green;
+        
+    }
+    
+    body {
+        
+        background-color: lightgrey;
+            
+    }
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    
+</style>
+
+<div class="topnav">
+  <a class="active" href="{% url 'home' %}">Home</a>
+</div>
+
+<div class="container mb-5">
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-5 col-sm-12 p-4 text-center">
+            <h1 style="font-size: 58px";><b>Order Confirmed!</b></h1>
+            <!--<p>You should receive a confirmation email soon.</p>-->
+            <!--<a href="{% url 'home' %}">Home</a>-->
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5 col-sm-12 text-center">
+            <h3 class="pb-3">Order Summary:</h3>
+            {% for item in items %}
+                <p>{{ item.name }} <span class="pl-3">{{ item.price }}</span></p>
+            {% endfor %}
+
+            <p class="font-weight-bold pt-4">Total: {{ price }}</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -14,10 +14,15 @@ class About(View):
 class Order(View):
     def get(self, request, *args, **kwargs):
         
-        drinks = MenuItem.objects.filter(category__name__conatins= 'Drink')
-        dessert = MenuItem.objects.filter(category__name__conatins= 'Dessert')
-        main_course = MenuItem.objects.filter(category__name__conatins= 'Main_Course')
-        starter = MenuItem.objects.filter(category__name__conatins= 'Starter')
+        starter = MenuItem.objects.filter(category__name__contains='Starter')
+        dessert = MenuItem.objects.filter(category__name__contains='Dessert')
+        drinks = MenuItem.objects.filter(category__name__contains='Drink')
+        main_course = MenuItem.objects.filter(category__name__contains='Main_Course')
+        
+        # drinks = MenuItem.objects.filter(category__name__conatins= 'Drink')
+        # dessert = MenuItem.objects.filter(category__name__conatins= 'Dessert')
+        # main_course = MenuItem.objects.filter(category__name__conatins= 'Main_Course')
+        # starter = MenuItem.objects.filter(category__name__conatins= 'Starter')
         
         context = {
             'drinks': drinks,
@@ -27,7 +32,7 @@ class Order(View):
             
         }
         
-        return render(request, 'customer/order.html' , context)
+        return render(request, 'order.html' , context)
         
     def post(self, request, *args, **kwargs):
         order_items = {
@@ -51,8 +56,8 @@ class Order(View):
 
         for item in order_items['items']:
             price += item['price']
-            item_ids.append(item['id'])
-
+            item_ids.append(item['id']) 
+    
         order = OrderModel.objects.create(price=price)
         order.items.add(*item_ids)
 
@@ -61,5 +66,5 @@ class Order(View):
             'price': price
         }
 
-        return render(request, 'customer/order_confirmation.html', context)
+        return render(request, 'order_confirmation.html', context)
         

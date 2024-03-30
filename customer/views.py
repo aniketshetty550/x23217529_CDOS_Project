@@ -6,6 +6,10 @@ from .models import MenuItem, Category, OrderModel
 class Home(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'home.html')
+        
+class Contact(View):
+    def get(self,request, *args, **kwargs):
+        return render(request, 'contact.html')
 
 class About(View):
     def get(self, request, *args, **kwargs):

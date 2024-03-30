@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+.container{
+    margin-top:70px;
+    margin-left:60px;
+    font-family: Times, Helvetica, sans-serif;
+    color: Black;
+        
+    }
+    
+    body {
+        
+        background-color: lightgrey;
+            
+    }
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+   
+    
+</style>
+
+<div class="topnav">
+  <a class="active" href="{% url 'home' %}">HOME</a>
+</div>
+
+<div class="container mb-5">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">
+           <h1 style="font-size: 40px;">
+          <b>Contact Us: +91 955-26-37373</b></h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-10 col-sm-12 offset-md-1 p-4 text-center">
+            <h1><b>Opening Hours</b></h1>
+            <div class="w-row">
+                <div class="w-half">
+                  <p>Mon: 07.00 - 12.00</p>
+                  <p>Tuesday: 07.00 - 12.00</p>
+                  <p>Wednesday: 07.00 - 12.00</p>
+                  <p>Thursday: 07.00 - 12.00</p>
+                </div>
+                <div class="w-half">
+                  <p>Friday: 07.00 - 12.00</p>
+                  <p>Saturday: 07.00 - 12.00</p>
+                  <p>Sunday: 07.00 - 12.00</p>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+
+  
+{% endblock content %}

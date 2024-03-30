@@ -1,0 +1,84 @@
+<!--% extends 'base.html' %}-->
+
+<!--{% block content %}-->
+
+<!--<style>-->
+
+<!--body {-->
+<!--            background-color: lightgrey;-->
+                 
+<!--             }-->
+<!--body {font-family: TImes, Helvetica, sans-serif;}-->
+<!--form {border: 3px solid #f1f1f1;}-->
+
+<!--input[type=text], input[type=password] {-->
+<!--  width: 100%;-->
+<!--  padding: 12px 20px;-->
+<!--  margin: 8px 0;-->
+<!--  display: inline-block;-->
+<!--  border: 1px solid #ccc;-->
+<!--  box-sizing: border-box;-->
+<!--}-->
+
+<!--button {-->
+<!--  background-color: #04AA6D;-->
+<!--  color: white;-->
+<!--  padding: 14px 20px;-->
+<!--  margin: 8px 0;-->
+<!--  border: none;-->
+<!--  cursor: pointer;-->
+<!--  width: 10%;-->
+<!--}-->
+
+<!--button:hover {-->
+<!--  opacity: 0.8;-->
+<!--}-->
+
+<!--.container {-->
+<!--  padding: 10px;-->
+<!--}-->
+
+<!--span.psw {-->
+<!--  float: right;-->
+<!--  padding-top: 16px;-->
+<!--}-->
+
+<!--@media screen and (max-width: 300px) {-->
+<!--  span.psw {-->
+<!--     display: block;-->
+<!--     float: none;-->
+<!--  }-->
+  
+<!--}-->
+<!--</style>-->
+<!--</head>-->
+<!--<body>-->
+<!-- {% if messages %}-->
+<!--    <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>-->
+<!--    {% endif %}-->
+<!--<h1><b>Login</b></h1>-->
+
+<!--<form method="post" class= "form">-->
+<!-- {% csrf_token %}-->
+<!--  <div class="container">-->
+<!--    <label for="email"><b>Email</b></label>-->
+<!--    <input type="text" placeholder="Enter Email " name="email" required>-->
+    
+
+<!--    <label for="psw"><b>Password</b></label>-->
+<!--    <input type="password" placeholder="Enter Password" name="password" required>-->
+        
+<!--    <button type="submit">Login</button>-->
+<!--    <a type="button" href="{% url 'signup' %}">Signup</a>-->
+<!--  </div>-->
+
+<!--</form>-->
+<!--{% if alert %}-->
+<!--        <script>-->
+<!--    alert("You are now successfully logged in as a customer");-->
+<!--    document.location = "/gallery";-->
+<!--  </script>-->
+<!--      {% endif %}-->
+
+
+<!--{% endblock content %}-->

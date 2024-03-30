@@ -7,6 +7,11 @@ class Home(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'home.html')
         
+        
+# class Lougout(View):
+#     def get(self,request, *args, **kwargs):
+#         return render(request, 'login.html')
+        
 class Contact(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'contact.html')
@@ -23,10 +28,6 @@ class Order(View):
         drinks = MenuItem.objects.filter(category__name__contains='Drink')
         main_course = MenuItem.objects.filter(category__name__contains='Main_Course')
         
-        # drinks = MenuItem.objects.filter(category__name__conatins= 'Drink')
-        # dessert = MenuItem.objects.filter(category__name__conatins= 'Dessert')
-        # main_course = MenuItem.objects.filter(category__name__conatins= 'Main_Course')
-        # starter = MenuItem.objects.filter(category__name__conatins= 'Starter')
         
         context = {
             'drinks': drinks,
@@ -72,3 +73,5 @@ class Order(View):
 
         return render(request, 'order_confirmation.html', context)
         
+        
+    

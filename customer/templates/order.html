@@ -4,12 +4,46 @@
 
 <style>
 
+.container{
+    margin-top:10px;
+    margin-left:130px;
+    font-family: Times, Helvetica, sans-serif;
+    color: Black;
+        
+    }
+    
     body {
-            background-color: lightgrey;
-                
-        }
+        
+        background-color: lightgrey;
+            
+    }
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+   
     
 </style>
+
+<div class="topnav">
+  <a class="active" href="{% url 'home' %}">HOME</a>
+</div>
+
 
 <div class="container mb-5">
     <div class="row justify-content-center mt-1">

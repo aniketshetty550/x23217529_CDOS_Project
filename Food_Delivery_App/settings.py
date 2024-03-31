@@ -38,7 +38,6 @@ ALLOWED_HOSTS = ['e5c11ff3044e4cd1905938a3acb9cac3.vfs.cloud9.eu-west-1.amazonaw
 
 INSTALLED_APPS = [ 
     'customer',
-    'restaurant',
 
     # 'crispy_forms',
     # 'allauth',

@@ -1,12 +1,40 @@
 from django.shortcuts import render
 from django.views import View
 from .models import MenuItem, Category, OrderModel
+from django.db.models import Q
 # Create your views here.
 
 class Home(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'home.html')
         
+class Menu(View):
+    def get(self,request, *args, **kwargs):
+        menu_items = MenuItem.objects.all()
+        
+        context = {
+            'menu_items' : menu_items
+        }
+        
+        return render(request, 'menu.html' , context)
+        
+class MenuSearch(View):
+    def get(self,request, *args, **kwargs):
+        query = self.request.GET.get("q")
+        
+        menu_items = MenuItem.objects.filter( 
+            Q(name__icontains=query) |
+            Q(price__icontains=query) |
+            Q(description__icontains=query)
+
+        )
+            
+        context = {
+            'menu_items': menu_items
+                
+        }
+            
+        return render(request, 'menu.html', context)
         
 # class Lougout(View):
 #     def get(self,request, *args, **kwargs):
@@ -15,6 +43,14 @@ class Home(View):
 class Contact(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'contact.html')
+
+# class Login(View):
+#     def get(self,request, *args, **kwargs):
+#         return render(request, 'login.html')
+        
+# class Signup(View):
+#     def get(self,request, *args, **kwargs):
+#         return render(request, 'signup.html')
 
 class About(View):
     def get(self, request, *args, **kwargs):
@@ -46,7 +82,7 @@ class Order(View):
         street = request.POST.get('street')
         city = request.POST.get('city')
         state = request.POST.get('state')
-        zip_code = request.POST.get('zip_code')
+        zip_code = request.POST.get('zip')
         
         order_items = {
             'items': []

@@ -1,1 +1,103 @@
-<h1>Add Menu</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+.container{
+    margin-top:10px;
+    margin-left:130px;
+    font-family: Times, Helvetica, sans-serif;
+    color: Black;
+        
+    }
+    
+    body {
+        
+        background-color: lightgrey;
+            
+    }
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+     .topnav a.split {
+      float: right;
+      background-color: #04AA6D;
+      color: white;
+    }
+   
+    
+</style>
+
+<div class="topnav">
+  <!--<a class="active" href="{% url 'login' %}">ADD MENU</a>-->
+  <a href="{% url 'owner' %}" class="split">BACK</a>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 col-sm-12 text-center">
+            <h1>Add Menu</h1> 
+            <h5> Changing the Menu As per the requirements</h5>
+        </div>
+    </div>
+
+<div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div>
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div>
+                                <label for="description">Description:</label>
+                                <textarea id="description" name="description" required></textarea>
+                            </div>
+                            <div>
+                                <label for="image">Image:</label>
+                                <input type="file" id="image" name="image" accept="image/*" required>
+                            </div>
+                            <div>
+                                <label for="price">Price:</label>
+                                <input type="number" id="price" name="price" step="0.01" required>
+                            </div>
+                            <div>
+                                <label for="category">Category:</label>
+                                <select id="category" name="category" required>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+{% endblock content %}

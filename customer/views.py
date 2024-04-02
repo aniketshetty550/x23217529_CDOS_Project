@@ -7,7 +7,8 @@ from django.db.models import Q
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.models import User
 from .forms import CreateUserForm
-# from .models import Category, Photo
+from .models import Category, MenuItem
+from .forms import MenuItemForm
 # Create your views here.
 
 class Home(View):
@@ -17,11 +18,33 @@ class Home(View):
 class Adminlogin(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'adminlogin.html')
-        
-        
+
+  
 class AddMenu(View):
-    def get(self,request, *args, **kwargs):
-        return render(request, 'addmenu.html')        
+    def get(self,request, *args, **kwargs):   
+        if request.method == 'POST':
+            form = MenuItemForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('owner')  # Redirect to the menu page after adding a new menu item
+        else:
+            form = MenuItemForm()
+        
+        return render(request, 'addmenu.html', {'form': form, 'categories': Category.objects.all()})
+        
+    def post(self,request, *args, **kwargs):   
+        if request.method == 'POST':
+            form = MenuItemForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('owner')  # Redirect to the menu page after adding a new menu item
+        else:
+            form = MenuItemForm()
+        
+        return render(request, 'addmenu.html', {'form': form, 'categories': Category.objects.all()})
+        
+        
+    
         
 class Menu(View):
     def get(self,request, *args, **kwargs):
@@ -32,6 +55,17 @@ class Menu(View):
         }
         
         return render(request, 'menu.html' , context)
+        
+class Owner(View):
+    def get(self,request, *args, **kwargs):
+        menu_items = MenuItem.objects.all()
+        
+        context = {
+            'menu_items' : menu_items
+        }
+        
+        return render(request, 'owner.html' , context) 
+        
         
 class MenuSearch(View):
     def get(self,request, *args, **kwargs):
@@ -127,7 +161,6 @@ class Order(View):
 
 class Login(View):
     def get(self, request, *args, **kwargs):
-        print(request.method)
         if request.method =='POST':
             email = request.POST.get('email')
             password = request.POST.get('password')
@@ -153,7 +186,7 @@ class Login(View):
             auth_login(request, user)
             print(self.request.user.is_staff)
             if self.request.user.is_staff:
-                return redirect('addmenu')
+                return redirect('owner')
             else:  
                 return redirect('order')
 

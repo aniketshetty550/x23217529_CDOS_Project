@@ -36,12 +36,19 @@
       background-color: #ddd;
       color: black;
     }
+    
+     .topnav a.split {
+      float: right;
+      background-color: #04AA6D;
+      color: white;
+    }
    
     
 </style>
 
 <div class="topnav">
-  <a class="active" href="{% url 'order' %}">Grab Some Food!</a>
+  <a class="active" href="{% url 'login' %}">Grab Some Food!</a>
+  <!--<a href="{% url 'adminlogin' %}" class="split">Add Menu</a>-->
 </div>
 
 <div class="container">

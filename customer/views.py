@@ -1,12 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib import messages
 from .models import MenuItem, Category, OrderModel
+from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
+from django.contrib.auth import login as auth_login
+from django.contrib.auth.models import User
+# from .models import Category, Photo
 # Create your views here.
 
 class Home(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'home.html')
+
+class Adminlogin(View):
+    def get(self,request, *args, **kwargs):
+        return render(request, 'adminlogin.html')
+        
+        
+class Add(View):
+    def get(self,request, *args, **kwargs):
+        return render(request, 'add.html')        
         
 class Menu(View):
     def get(self,request, *args, **kwargs):
@@ -36,22 +50,14 @@ class MenuSearch(View):
             
         return render(request, 'menu.html', context)
         
-# class Lougout(View):
-#     def get(self,request, *args, **kwargs):
-#         return render(request, 'login.html')
+class Lougout(View):
+    def get(self,request, *args, **kwargs):
+        return render(request, 'login.html')
         
 class Contact(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'contact.html')
-
-# class Login(View):
-#     def get(self,request, *args, **kwargs):
-#         return render(request, 'login.html')
         
-# class Signup(View):
-#     def get(self,request, *args, **kwargs):
-#         return render(request, 'signup.html')
-
 class About(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'about.html')
@@ -116,6 +122,94 @@ class Order(View):
         }
 
         return render(request, 'order_confirmation.html', context)
+        
+class Login(View):
+    def get(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            # Assuming you have a custom user model with first_name, last_name, and password fields
+            email = request.POST.get('email')
+            # first_name = request.POST.get('first_name')
+            # last_name = request.POST.get('last_name')
+            password = request.POST.get('password')
+            
+            # Authenticate user
+            # user = authenticate(request, first_name=first_name, last_name=last_name, password=password)
+            user = authenticate(request, username=email, password=password)
+            
+            print(user, email, password)
+            if user is None:
+                messages.error(request, "User Credential Invalid.")
+                return render(request, 'login.html')
+            else:
+                auth_login(request,user)
+                # Redirect to the gallery page
+                return redirect('/menu')
+        else:
+            # GET request, render login page
+            return render(request, 'login.html')
+            
+class Signup(View):
+    def get(self, request, *args, **kwargs):
+    # messages.success(request,"Account created successfully.")
+            if request.method == 'POST':
+                
+                first_name = request.POST.get('first_name')
+                last_name = request.POST.get('last_name')
+                email = request.POST.get('email')
+                password = request.POST.get('password')
+                password_confirm = request.POST.get('password_confirm')
+        
+                
+                if password != password_confirm:
+                    messages.error(request, "Passwords do not match.")
+                    return redirect('signup') 
+        
+                
+                try:
+                    user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
+                    user.save()
+                    messages.success(request, "Account created successfully.")
+                    return redirect('login')  
+                except Exception as e:
+                    messages.error(request, str(e))
+                    return redirect('signup')  
+            else:
+                
+                return render(request, 'signup.html')
+
+    
+# class Add(View):
+#     def get(self, request, *args, **kwargs):
+        
+#         user = request.user
+    
+#         categories = user.category_set.all()
+    
+#         if request.method == 'POST':
+#             data = request.POST
+#             images = request.FILES.getlist('images')
+    
+#             if data['category'] != 'none':
+#                 category = Category.objects.get(id=data['category'])
+#             elif data['category_new'] != '':
+#                 category, created = Category.objects.get_or_create(
+#                     user=user,
+#                     name=data['category_new'])
+#             else:
+#                 category = None
+    
+#             for image in images:
+#                 photo = Photo.objects.create(
+#                     category=category,
+#                     description=data['description'],
+#                     image=image,
+#                 )
+    
+#             return redirect('menu')
+
+#     context = {'categories': categories}
+#     return render(request, 'add.html', context)
+    
         
         
     

@@ -37,20 +37,15 @@ ALLOWED_HOSTS = ['e5c11ff3044e4cd1905938a3acb9cac3.vfs.cloud9.eu-west-1.amazonaw
 
 
 INSTALLED_APPS = [ 
-    'customer',
-
-    # 'crispy_forms',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'django.contrib.sites',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
+    'customer',
 ]
 
 SITE_ID = 1

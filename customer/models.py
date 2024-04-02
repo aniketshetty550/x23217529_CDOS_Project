@@ -32,3 +32,4 @@ class OrderModel(models.Model):
     
     def __str__(self):
         return f'Order: {self.created_on.strftime("%b %d %I: %M %p")}'
+        

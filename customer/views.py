@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.models import User
+from .forms import CreateUserForm
 # from .models import Category, Photo
 # Create your views here.
 
@@ -18,9 +19,9 @@ class Adminlogin(View):
         return render(request, 'adminlogin.html')
         
         
-class Add(View):
-    def get(self,request, *args, **kwargs):
-        return render(request, 'add.html')        
+# class Add(View):
+#     def get(self,request, *args, **kwargs):
+#         return render(request, 'add.html')        
         
 class Menu(View):
     def get(self,request, *args, **kwargs):
@@ -143,73 +144,36 @@ class Login(View):
             else:
                 auth_login(request,user)
                 # Redirect to the gallery page
-                return redirect('/menu')
+                return redirect('/order')
         else:
             # GET request, render login page
             return render(request, 'login.html')
             
+
 class Signup(View):
     def get(self, request, *args, **kwargs):
-    # messages.success(request,"Account created successfully.")
-            if request.method == 'POST':
-                
-                first_name = request.POST.get('first_name')
-                last_name = request.POST.get('last_name')
-                email = request.POST.get('email')
-                password = request.POST.get('password')
-                password_confirm = request.POST.get('password_confirm')
-        
-                
-                if password != password_confirm:
-                    messages.error(request, "Passwords do not match.")
-                    return redirect('signup') 
-        
-                
-                try:
-                    user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
-                    user.save()
-                    messages.success(request, "Account created successfully.")
-                    return redirect('login')  
-                except Exception as e:
-                    messages.error(request, str(e))
-                    return redirect('signup')  
-            else:
-                
-                return render(request, 'signup.html')
+        return render(request, 'signup.html')
+ 
+    def post(self, request, *args, **kwargs):
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password_confirm = request.POST.get('password_confirm')
+ 
+        if password != password_confirm:
+            messages.error(request, "Passwords do not match.")
+            return redirect('signup')
+ 
+        try:
+            user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
+            messages.success(request, "Account created successfully.")
+            return redirect('login')  
+        except Exception as e:
+            messages.error(request, str(e))
+            return redirect('signup')
 
     
-# class Add(View):
-#     def get(self, request, *args, **kwargs):
-        
-#         user = request.user
-    
-#         categories = user.category_set.all()
-    
-#         if request.method == 'POST':
-#             data = request.POST
-#             images = request.FILES.getlist('images')
-    
-#             if data['category'] != 'none':
-#                 category = Category.objects.get(id=data['category'])
-#             elif data['category_new'] != '':
-#                 category, created = Category.objects.get_or_create(
-#                     user=user,
-#                     name=data['category_new'])
-#             else:
-#                 category = None
-    
-#             for image in images:
-#                 photo = Photo.objects.create(
-#                     category=category,
-#                     description=data['description'],
-#                     image=image,
-#                 )
-    
-#             return redirect('menu')
 
-#     context = {'categories': categories}
-#     return render(request, 'add.html', context)
-    
-        
         
     

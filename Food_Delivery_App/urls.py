@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path 
-from customer.views import Home, About, Order, Contact, Menu, MenuSearch, Login, Signup, Adminlogin
+from customer.views import Home, About, Order, Contact, Menu, MenuSearch, Login, Signup, Adminlogin, AddMenu
 from django.conf.urls.static import static
 from django.conf import settings
 # from .views import Login, Signup
@@ -31,7 +31,7 @@ urlpatterns = [
     path('order/', Order.as_view(), name='order'),
     path('login/', Login.as_view(), name='login'),
     path('signup/', Signup.as_view(), name='signup'),
-    # path('add/', Add.as_view(), name='add'),
+    path('addmenu/', AddMenu.as_view(), name='addmenu'),
     path('adminlogin/', Adminlogin.as_view(), name='adminlogin'),
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -36,12 +36,19 @@
       background-color: #ddd;
       color: black;
     }
+    
+    .topnav a.split {
+      float: right;
+      background-color: #04AA6D;
+      color: white;
+    }
    
     
 </style>
 
 <div class="topnav">
   <a class="active" href="{% url 'home' %}">HOME</a>
+  <a href="{% url 'home' %}" class="split">LOGOUT</a>
 </div>
 
 
@@ -179,9 +186,9 @@
                         </button>
                       </div>
                       <div class="modal-footer">
-                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Would you like to Make some changes</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
-                        <button type="submit" class="btn btn-primary">Place Order</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Would you like to Make some changes</button>
+                        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>-->
+                        <button type="submit" class="btn btn-primary">Place An Order!</button>
                       </div>
                     </div>
                   </div>

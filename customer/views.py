@@ -19,9 +19,9 @@ class Adminlogin(View):
         return render(request, 'adminlogin.html')
         
         
-# class Add(View):
-#     def get(self,request, *args, **kwargs):
-#         return render(request, 'add.html')        
+class AddMenu(View):
+    def get(self,request, *args, **kwargs):
+        return render(request, 'addmenu.html')        
         
 class Menu(View):
     def get(self,request, *args, **kwargs):
@@ -123,32 +123,39 @@ class Order(View):
         }
 
         return render(request, 'order_confirmation.html', context)
-        
+
+
 class Login(View):
     def get(self, request, *args, **kwargs):
-        if request.method == 'POST':
-            # Assuming you have a custom user model with first_name, last_name, and password fields
+        print(request.method)
+        if request.method =='POST':
             email = request.POST.get('email')
-            # first_name = request.POST.get('first_name')
-            # last_name = request.POST.get('last_name')
             password = request.POST.get('password')
-            
-            # Authenticate user
-            # user = authenticate(request, first_name=first_name, last_name=last_name, password=password)
             user = authenticate(request, username=email, password=password)
-            
-            print(user, email, password)
             if user is None:
                 messages.error(request, "User Credential Invalid.")
                 return render(request, 'login.html')
             else:
-                auth_login(request,user)
-                # Redirect to the gallery page
-                return redirect('/order')
+                auth_login(request, user)
+                return redirect('order')  
         else:
-            # GET request, render login page
             return render(request, 'login.html')
             
+    def post(self, request, *args, **kwargs):
+        print(request.method)
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, username=email, password=password)
+        if user is None:
+            messages.error(request, "User Credential Invalid.")
+            return render(request, 'login.html')
+        else:
+            auth_login(request, user)
+            print(self.request.user.is_staff)
+            if self.request.user.is_staff:
+                return redirect('addmenu')
+            else:  
+                return redirect('order')
 
 class Signup(View):
     def get(self, request, *args, **kwargs):

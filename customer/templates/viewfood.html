@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    body {
+    background-color: lightgrey;
+    }
+    
+    .container{
+            width: 35%;
+            height: 35%;
+            overflow: hidden;
+    }
+</style>
+
+<body class="m-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+
+                <a href="{% url 'owner' %}" class="btn btn-dark my-3">Back to Gallery</a>
+                <form method="post" action="/updatedish/">
+                    {% csrf_token %}
+                <div style="height: 80vh">
+                    <input type="text" placeholder="id" name="id" required value="{{menu_item.id}}" style="display:none">
+                    <img style="max-width: 100%; max-height: 100%;" src="{{menu_item.image.url}}">
+                    <br>
+                    <label for="price"><b>Price</b></label>
+                    <input type="text" placeholder="Price" name="price" required value="{{menu_item.price}}">
+                    <br>
+                    
+                    <label for="description"><b>Description</b></label>
+                    <input type="text" placeholder="description" name="description" required value="{{menu_item.description}}">
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+
+{% endblock content %}

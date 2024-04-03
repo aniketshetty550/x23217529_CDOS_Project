@@ -84,8 +84,8 @@
     }
   })
     }
-
 </script>
+
 
 <div class="topnav">
   <a class="active" href="{% url 'addmenu' %}">ADD MENU</a>
@@ -97,7 +97,6 @@
     <div class="row justify-content-center mt-5">
         <div class="col-md-6 col-sm-12 text-center">
             <h1>Restaurant Owner</h1> 
-            <!--<h5> Count the Memories & Not the Calories</h5>-->
         </div>
     </div>
     <div class="row justify-content-center">
@@ -108,7 +107,8 @@
             <p>Price: {{ item.price }}</p>
             <p>{{ item.description }}</p>
             <button class="btn btn-danger" onclick ="delete_menu_item({{item.id}})">Delete Dish</button>
-            <button class="btn btn-dark" onclick ="delete_menu_item({{item.id}})">Update Dish</button>
+            <a href="{% url 'viewfood' item.id %}" class="btn btn-dark ">Edit Food</a>
+            
         </div>
         {% endfor %}
     </div>

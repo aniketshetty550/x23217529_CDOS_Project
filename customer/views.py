@@ -11,7 +11,7 @@ from .models import Category, MenuItem
 from .forms import MenuItemForm
 from django.http import HttpResponse
 import json
-
+from django.forms.models import model_to_dict
 # Create your views here.
 
 class Home(View):
@@ -26,21 +26,17 @@ class Update(View):
     def get(self,request, *args, **kwargs):
         if request.method == 'POST':
             return redirect('owner.html')
-# class Delete(View):
-#     def get(self,request, *args, **kwargs):
-#         if request.method == 'POST':
-#             menu_item = get_object(MenuItem, id=menu_item)
-#             menu_item.delete()
-#         return redirect('owner.html')
-#     def post(self,request, *args, **kwargs):
-#         if request.method == 'POST':
-#             menu_item = get_object(MenuItem, id=menu_item)
-#             menu_item.delete()
-#         return redirect('owner.html')
+    def post(self, request, *args, **kwargs):
+        id=request.POST.get('id')
+        menu_item = MenuItem.objects.get(id=id)
+        menu_item.price = request.POST.get('price')
+        menu_item.description = request.POST.get('description')
+        menu_item.save()
+        return redirect('owner')
+        
         
 class Delete(View):
     def get(self, request, pk, *args, **kwargs):
-        # menu_item = kwargs.get('pk__contains=int(pk)')
         menu_item = kwargs.get('id=pk')
         try:
             menu_item = MenuItem.objects.get(id=pk)
@@ -48,8 +44,13 @@ class Delete(View):
             return redirect('owner') 
         menu_item.delete()
         return HttpResponse(json.dumps({'status': 'menu id deleted!'}))
-    
-        
+
+class Viewfood(View):
+    def get(self,request, pk, *args, **kwargs):
+        # menu_items = MenuItem.objects.all()
+        menu_item = MenuItem.objects.get(id=pk)
+        return render(request, 'viewfood.html', {'menu_item':menu_item})
+
         
 class AddMenu(View):
     def get(self,request, *args, **kwargs):   
@@ -95,7 +96,7 @@ class Owner(View):
             'menu_items' : menu_items
         }
         
-        return render(request, 'owner.html' , context) 
+        return render(request, 'owner.html', context) 
         
         
 class MenuSearch(View):

@@ -15,14 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path 
-from customer.views import Home, About, Order, Contact, Menu, MenuSearch, Login, Signup, Adminlogin, AddMenu, Owner,Delete
+from customer.views import Home, About, Order, Contact, Menu, MenuSearch, Login, Signup, Adminlogin, AddMenu, Owner, Delete, Update
 from django.conf.urls.static import static
 from django.conf import settings
 # from .views import Login, Signup
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('accounts/', include('allauth.urls')),
     path('',Home.as_view(), name='home'),  
     path('menu/', Menu.as_view(), name='menu'),
     path('menu/search', MenuSearch.as_view(), name='menu-search'),
@@ -34,6 +33,7 @@ urlpatterns = [
     path('addmenu/', AddMenu.as_view(), name='addmenu'),
     path('owner/', Owner.as_view(), name='owner'),
     path('adminlogin/', Adminlogin.as_view(), name='adminlogin'),
-    path('delete/', Delete.as_view(), name="delete"),
+    path('deletedish/<str:pk>', Delete.as_view(), name="deletedish"),
+    path('update/', Update.as_view(), name="update"),
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

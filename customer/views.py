@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from .forms import CreateUserForm
 from .models import Category, MenuItem
 from .forms import MenuItemForm
+from django.http import HttpResponse
+import json
 
 # Create your views here.
 
@@ -19,7 +21,11 @@ class Home(View):
 class Adminlogin(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'adminlogin.html')
-  
+        
+class Update(View):
+    def get(self,request, *args, **kwargs):
+        if request.method == 'POST':
+            return redirect('owner.html')
 # class Delete(View):
 #     def get(self,request, *args, **kwargs):
 #         if request.method == 'POST':
@@ -33,15 +39,16 @@ class Adminlogin(View):
 #         return redirect('owner.html')
         
 class Delete(View):
-    def get(self, request, *args, **kwargs):
-        menu_item_id = kwargs.get('menu_item_id')
+    def get(self, request, pk, *args, **kwargs):
+        # menu_item = kwargs.get('pk__contains=int(pk)')
+        menu_item = kwargs.get('id=pk')
         try:
-            menu_item = MenuItem.objects.get(pk__contains=int(item))
+            menu_item = MenuItem.objects.get(id=pk)
         except MenuItem.DoesNotExist:
             return redirect('owner') 
         menu_item.delete()
-        return redirect('owner')  
-
+        return HttpResponse(json.dumps({'status': 'ajax is done!'}))
+    
         
         
 class AddMenu(View):
@@ -50,7 +57,7 @@ class AddMenu(View):
             form = MenuItemForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
-                return redirect('owner')  # Redirect to the menu page after adding a new menu item
+                return redirect('owner') 
         else:
             form = MenuItemForm()
         
@@ -61,7 +68,7 @@ class AddMenu(View):
             form = MenuItemForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
-                return redirect('owner')  # Redirect to the menu page after adding a new menu item
+                return redirect('owner') 
         else:
             form = MenuItemForm()
         

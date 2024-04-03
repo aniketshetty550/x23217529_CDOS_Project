@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from .forms import CreateUserForm
 from .models import Category, MenuItem
 from .forms import MenuItemForm
+
 # Create your views here.
 
 class Home(View):
@@ -18,8 +19,31 @@ class Home(View):
 class Adminlogin(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'adminlogin.html')
-
   
+# class Delete(View):
+#     def get(self,request, *args, **kwargs):
+#         if request.method == 'POST':
+#             menu_item = get_object(MenuItem, id=menu_item)
+#             menu_item.delete()
+#         return redirect('owner.html')
+#     def post(self,request, *args, **kwargs):
+#         if request.method == 'POST':
+#             menu_item = get_object(MenuItem, id=menu_item)
+#             menu_item.delete()
+#         return redirect('owner.html')
+        
+class Delete(View):
+    def get(self, request, *args, **kwargs):
+        menu_item_id = kwargs.get('menu_item_id')
+        try:
+            menu_item = MenuItem.objects.get(pk__contains=int(item))
+        except MenuItem.DoesNotExist:
+            return redirect('owner') 
+        menu_item.delete()
+        return redirect('owner')  
+
+        
+        
 class AddMenu(View):
     def get(self,request, *args, **kwargs):   
         if request.method == 'POST':

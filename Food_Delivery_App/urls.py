@@ -34,6 +34,6 @@ urlpatterns = [
     path('owner/', Owner.as_view(), name='owner'),
     path('adminlogin/', Adminlogin.as_view(), name='adminlogin'),
     path('deletedish/<str:pk>', Delete.as_view(), name="deletedish"),
-    path('update/', Update.as_view(), name="update"),
+    path('updatedish/', Update.as_view(), name="updatedish"),
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

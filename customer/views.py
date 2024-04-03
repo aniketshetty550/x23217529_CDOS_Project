@@ -47,7 +47,7 @@ class Delete(View):
         except MenuItem.DoesNotExist:
             return redirect('owner') 
         menu_item.delete()
-        return HttpResponse(json.dumps({'status': 'ajax is done!'}))
+        return HttpResponse(json.dumps({'status': 'menu id deleted!'}))
     
         
         

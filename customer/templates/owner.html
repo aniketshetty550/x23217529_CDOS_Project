@@ -108,6 +108,7 @@
             <p>Price: {{ item.price }}</p>
             <p>{{ item.description }}</p>
             <button class="btn btn-danger" onclick ="delete_menu_item({{item.id}})">Delete Dish</button>
+            <button class="btn btn-dark" onclick ="delete_menu_item({{item.id}})">Update Dish</button>
         </div>
         {% endfor %}
     </div>

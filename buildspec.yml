@@ -24,7 +24,7 @@ env:
     HOST: prod/sonar:HOST
     Organization: prod/sonar:Organization
     Project: prod/sonar:Project
-phases:
+phase:
   install:
     runtime-versions:
       java: openjdk11

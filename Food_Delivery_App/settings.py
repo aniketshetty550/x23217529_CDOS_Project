@@ -28,14 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['e5c11ff3044e4cd1905938a3acb9cac3.vfs.cloud9.eu-west-1.amazonaws.com']
 
 
-# Application definition
-
-# AUTHENTICATION_BACKENDS = [
-#     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.account.auth_backends.AuthenticationBackend',
-# ]
-
-
 INSTALLED_APPS = [ 
 
     'django.contrib.admin',
@@ -125,9 +117,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/images/'

@@ -3,7 +3,7 @@ import json
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth import login as auth_login
 from django.http import HttpResponse
@@ -259,9 +259,9 @@ class Signup(View):
  
     def post(self, request, *args, **kwargs):
         """ Used to define view functions, which handle HTTP requests and return HTTP responses"""
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        email = request.POST.get('email')
+        # first_name = request.POST.get('first_name')
+        # last_name = request.POST.get('last_name')
+        # email = request.POST.get('email')
         password = request.POST.get('password')
         password_confirm = request.POST.get('password_confirm')
  

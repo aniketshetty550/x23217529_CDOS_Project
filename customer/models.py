@@ -12,16 +12,20 @@ class MenuItem(models.Model):
     category =models.ManyToManyField('Category', related_name='item')
     
     def __str__(self):
+        """ Defining a str model with the following fields """
         return self.name
-        """ Is a common approach to provide a string representation of an instance of the model """
+        
     
 class Category(models.Model):
+    """ Defining a Category model with the following fields """
     name= models.CharField(max_length=100)
     
     def __str__(self):
+        """ Defining a str model with the following fields """
         return self.name
         
 class OrderModel(models.Model):
+    """ Defining a Order model with the following fields """
     created_on = models.DateTimeField(auto_now_add=True)
     price = models.DecimalField(max_digits=7,decimal_places=2)
     items = models.ManyToManyField('MenuItem', related_name='order', blank=True)
@@ -34,5 +38,6 @@ class OrderModel(models.Model):
     zip_code = models.IntegerField(blank=True, null= True)
     
     def __str__(self):
+        """ Defining a str model with the following fields """
         return f'Order: {self.created_on.strftime("%b %d %I: %M %p")}'
         

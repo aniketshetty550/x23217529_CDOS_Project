@@ -25,7 +25,7 @@ SECRET_KEY = '@aamlm6^31jby4jw00fhd530cx70=mw6(70+q@7h&bhgyjao@+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['e5c11ff3044e4cd1905938a3acb9cac3.vfs.cloud9.eu-west-1.amazonaws.com']
+ALLOWED_HOSTS = ['e5c11ff3044e4cd1905938a3acb9cac3.vfs.cloud9.eu-west-1.amazonaws.com','x23217529-cdos-project-env.eba-znp27gjt.eu-west-1.elasticbeanstalk.com']
 
 
 INSTALLED_APPS = [ 

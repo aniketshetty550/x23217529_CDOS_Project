@@ -1,3 +1,3 @@
-from django.test import TestCase
+""" Here test can be done """
 
 # Create your tests here.

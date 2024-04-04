@@ -28,7 +28,7 @@ env:
 phases:
   install:
     runtime-versions:
-      java: openjdk12
+      java: openjdk11
   pre_build:
     commands:
       - apt-get update

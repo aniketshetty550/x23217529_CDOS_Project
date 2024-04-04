@@ -5,7 +5,6 @@ charset-normalizer==3.3.2
 cryptography==42.0.5
 defusedxml==0.7.1
 Django==2.1.15
-django-crispy-forms==2.1
 idna==3.6
 oauthlib==3.2.2
 pillow==10.2.0

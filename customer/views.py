@@ -1,4 +1,5 @@
 """ We import necessary modules and classes from Django"""
+import json
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
@@ -7,9 +8,10 @@ from django.db.models import Q
 from django.contrib.auth import login as auth_login
 from django.http import HttpResponse
 from .models import MenuItem, Category, OrderModel
+# from django.forms.models import model_to_dict
 from .forms import MenuItemForm
-import json
-from django.forms.models import model_to_dict
+
+
 # Create your views here.
 
 class Home(View):
@@ -163,16 +165,13 @@ class Order(View):
         drinks = MenuItem.objects.filter(category__name__contains='Drink')
         main_course = MenuItem.objects.filter(category__name__contains='Main_Course')
         
-        
         context = {
             'drinks': drinks,
             'dessert': dessert,
             'main_course': main_course,
-            'starter':starter ,
-            
+            'starter':starter,
         }
-        
-        return render(request, 'order.html' , context)
+        return render(request,'order.html',context)
         
     def post(self, request, *args, **kwargs):
         """ Used to define view functions, which handle HTTP requests and return HTTP responses"""
@@ -271,7 +270,7 @@ class Signup(View):
             return redirect('signup')
  
         try:
-            user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
+            # user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
             messages.success(request, "Account created successfully.")
             return redirect('login')  
         except Exception as e:

@@ -1,6 +1,6 @@
 version: 0.2
 
-phases:
+ phases:
     install:
         runtime-versions:
             python: 3.9
@@ -24,7 +24,7 @@ env:
     HOST: prod/sonar:HOST
     Organization: prod/sonar:Organization
     Project: prod/sonar:Project
-phase:
+phases:
   install:
     runtime-versions:
       java: openjdk11

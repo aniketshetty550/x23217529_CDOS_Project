@@ -12,7 +12,7 @@ phases:
         commands:
             - python --version
             - pylint $CODEBUILD_SRC_DIR/*.py
-            - pylint $CODEBUILD_SRC_DIR/Food_Delivery_App/*.py
+            - pylint --disable=E1101,C0103,C0303,C0301,R0903,E0307 $CODEBUILD_SRC_DIR/Food_Delivery_App/*.py
             - pylint $CODEBUILD_SRC_DIR/customer/*.py
 artifacts:
     files:

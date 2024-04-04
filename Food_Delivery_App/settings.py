@@ -29,7 +29,6 @@ ALLOWED_HOSTS = ['e5c11ff3044e4cd1905938a3acb9cac3.vfs.cloud9.eu-west-1.amazonaw
 
 
 INSTALLED_APPS = [ 
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -123,6 +122,5 @@ MEDIA_URL = '/images/'
 
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
- 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

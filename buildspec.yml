@@ -9,6 +9,20 @@ phases:
       # Install dependencies needed for running the static analysis
       - pip install -r requirements.txt pylint
       
+  install:
+    runtime-versions:
+      java: openjdk11
+  pre_build:
+    commands:
+      - apt-get update
+      - apt-get install -y jq
+      - wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
+      - tar xzf apache-maven-3.5.4-bin.tar.gz
+      - ln -s apache-maven-3.5.4 maven
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
+      - unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
+      - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
+      
   pre_build:
     commands:
       - python --version
@@ -27,20 +41,7 @@ env:
     HOST: prod/sonar:HOST
     Organization: prod/sonar:Organization
     Project: prod/sonar:Project
-phases:
-  install:
-    runtime-versions:
-      java: openjdk11
-  pre_build:
-    commands:
-      - apt-get update
-      - apt-get install -y jq
-      - wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
-      - tar xzf apache-maven-3.5.4-bin.tar.gz
-      - ln -s apache-maven-3.5.4 maven
-      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
-      - unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
-      - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
+  
   build:
     commands:
       - mvn test     

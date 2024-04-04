@@ -1,13 +1,13 @@
+""" We import necessary modules and classes from Django"""
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
-from .models import MenuItem, Category, OrderModel
+from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth import login as auth_login
-from django.contrib.auth.models import User
-from .models import Category, MenuItem
-from .forms import MenuItemForm
 from django.http import HttpResponse
+from .models import MenuItem, Category, OrderModel
+from .forms import MenuItemForm
 import json
 from django.forms.models import model_to_dict
 # Create your views here.

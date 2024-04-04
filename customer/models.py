@@ -1,8 +1,10 @@
+"""Models for the app Django application """
 from django.db import models
 # from django.db.models.constraints import UniqueConstraint
 
 # Create your models here.
 class MenuItem(models.Model):
+    """ Defining a MenuItem model with the following fields """
     name= models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='menu_images/')
@@ -11,6 +13,7 @@ class MenuItem(models.Model):
     
     def __str__(self):
         return self.name
+        """ Is a common approach to provide a string representation of an instance of the model """
     
 class Category(models.Model):
     name= models.CharField(max_length=100)

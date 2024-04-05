@@ -1,4 +1,4 @@
-""" Manages the tables of the database """
+""" Manages the tables of the database and admin """
 from django.contrib import admin
 from.models import MenuItem, Category, OrderModel
 
